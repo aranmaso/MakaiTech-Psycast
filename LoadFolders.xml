@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<loadFolders>  
+  <v1.5>
+	<li>Common</li>
+	<li>1.5</li>
+	<!-- IfModNotActive -->
+  </v1.5>
+  <v1.6>
+	<li>Common</li>
+	<li>1.6</li>
+	<!-- IfModNotActive -->
+  </v1.6>
+</loadFolders>

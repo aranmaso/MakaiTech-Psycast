@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+  
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_GuidanceStar</defName>
+		<label>Guidance Star</label>
+		<description>give buff that boost work speed. scale with amount of passion pawn has(passion level don't matter.) &lt;color=#01F1F1&gt;\n\nSuccess: 15 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/GuidanceStar</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_GiveHediffPassion</abilityClass>
+		<castTime>60</castTime>
+		<targetMode>Pawn</targetMode>
+		<range>10</range>
+		<targetingParameters>
+			<canTargetSelf>True</canTargetSelf>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetBuildings>False</canTargetBuildings>
+		</targetingParameters>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>1</level>
+				<order>1</order>
+				<psyfocusCost>0.15</psyfocusCost>
+				<entropyGain>0</entropyGain>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>15</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_PassionGuide</hediffDefWhenSuccess>
+				<hours>6</hours>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_Pinncer</defName>
+		<label>Pinncer Funnel</label>
+		<description>target a hostile pawn. for each passion they have. create the same amount of laser targeted at them. &lt;color=#01F1F1&gt;\n\nSuccess: 12 \nGreat Success: 15&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/Pincer</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_ShootFromAroundTarget</abilityClass>
+		<needsTicking>true</needsTicking>
+		<castTime>60</castTime>
+		<targetMode>Pawn</targetMode>
+		<range>40</range>
+		<targetingParameters>
+			<canTargetSelf>True</canTargetSelf>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetBuildings>False</canTargetBuildings>
+		</targetingParameters>
+		<castSound>Shot_ChargeBlaster</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>1</level>
+				<order>2</order>
+				<psyfocusCost>0.05</psyfocusCost>
+				<entropyGain>25</entropyGain>
+				<prerequisites>
+					
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>12</successThreshold>
+				<hours>6</hours>
+				<projectileWhenSuccess>MakaiTechPsy_PF_BeamNormal</projectileWhenSuccess>
+				<projectileWhenGreatSuccess>MakaiTechPsy_PF_BeamGreat</projectileWhenGreatSuccess>
+				<projectileWhenFail>MakaiTechPsy_PF_BeamWeak</projectileWhenFail>
+				<projectileBurstCount>5</projectileBurstCount>
+				<tickBurstInterval>20</tickBurstInterval>
+				<greatSuccessThreshold>15</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_InspiringFlame</defName>
+		<label>Inspiring Flame</label>
+		<description>for each skill user has passion on. grant a buff on self with buff strength based on the amount of level it has. &lt;color=#01F1F1&gt;\n\nSuccess: 13 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/InspireFlame</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_GiveHediffPassionCurved</abilityClass>
+		<castTime>30</castTime>
+		<targetMode>Self</targetMode>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>2</level>
+				<order>1</order>
+				<psyfocusCost>0.20</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_GuidanceStar</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>13</successThreshold>
+				<hours>6</hours>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+				<curve>
+					<points>
+						<li>(0, 1)</li>
+						<li>(20, 5)</li>
+					</points>
+				</curve>
+				<hediffsToApply>
+					<li>MakaiTechPsy_PF_InspiringFlame_Shooting</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Melee</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Construction</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Mining</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Cooking</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Plants</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Animals</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Crafting</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Artistic</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Medicine</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Social</li>
+					<li>MakaiTechPsy_PF_InspiringFlame_Intellectual</li>
+				</hediffsToApply>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_CrucibleOfWill</defName>
+		<label>Crucible of Will</label>
+		<description>gather passion level from nearby prisoner or hostile. the stored passion can be used to increase ally passion in range &lt;color=#01F1F1&gt;\n\nSuccess: 15 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/Crucible</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_SpawnThing</abilityClass>
+		<castTime>60</castTime>
+		<targetMode>Location</targetMode>
+		<range>20</range>
+		<radius>6</radius>
+		<fleckOnTarget>PsycastAreaEffect</fleckOnTarget>
+		<fleckOnTargetScaleWithRadius>true</fleckOnTargetScaleWithRadius>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>2</level>
+				<order>2</order>
+				<psyfocusCost>0.5</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_GuidanceStar</li>
+					<li>Passioned_Flame_Pinncer</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>15</successThreshold>
+				<thingToSpawnWhenSuccess>MakaiTechPsy_PF_Crucible</thingToSpawnWhenSuccess>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+				<hours>2</hours>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_PillarOfLight</defName>
+		<label>False Sun</label>
+		<description>consolidate caster own passion into a false sun over target, after a brief delay, it will explode and cast the light of judgement onto it victim &lt;color=#01F1F1&gt;\n\nSuccess: 15 \nGreat Success: 20&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/FakeSun</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_LightPunishment</abilityClass>
+		<castTime>60</castTime>
+		<targetMode>Pawn</targetMode>
+		<range>20</range>
+		<targetingParameters>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>True</canTargetMechs>
+			<canTargetAnimals>True</canTargetAnimals>
+			<canTargetBuildings>False</canTargetBuildings>
+		</targetingParameters>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>2</level>
+				<order>3</order>
+				<psyfocusCost>0.1</psyfocusCost>
+				<entropyGain>50</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_Pinncer</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>15</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_PillarOfLight</hediffDefWhenSuccess>
+				<ticks>1250</ticks>
+				<greatSuccessThreshold>20</greatSuccessThreshold>
+				<fleckDef>MakaiPsyMote_LightPillarJudgement</fleckDef>
+				<fleckPosOffset>(0,0,7.5)</fleckPosOffset>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_GatheringFlame</defName>
+		<label>Gathering Flame</label>
+		<description>over the period of 7 days, gradually remove one passion level from user skill at random. when all passion level are gone, grant user a work speed buff with strength corresponding to the amount of passion consumed. &lt;color=#01F1F1&gt;\n\nSuccess: 13 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/GatheringFlame</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_GiveHediffPassion</abilityClass>
+		<durationTime>1000</durationTime>
+		<castTime>30</castTime>
+		<targetMode>Self</targetMode>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>3</level>
+				<order>1</order>
+				<psyfocusCost>0.25</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_InspiringFlame</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>13</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_GatheringProxy</hediffDefWhenSuccess>			
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_SparkOfMind</defName>
+		<label>Spark of Mind</label>
+		<description>grant user a permanent buff, whenever caster gain a passion in skill. a stack count will increase, which can be consume to grant various buff &lt;color=#01F1F1&gt;\n\nSuccess: 12 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/SparkMind</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_GiveHediffPassion</abilityClass>
+		<castTime>30</castTime>
+		<targetMode>Self</targetMode>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>3</level>
+				<order>2</order>
+				<psyfocusCost>0.3</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_CrucibleOfWill</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>12</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_WillCrucible</hediffDefWhenSuccess>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_ArtificialSun</defName>
+		<label>Artificial Sun</label>
+		<description>Summon an artificial sun on top of user. give heatstroke to nearby hostile pawns and grant allies a boost in combat capability &lt;color=#01F1F1&gt;\n\nSuccess: 15 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/ArtificialSun</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_GiveHediffPassion</abilityClass>
+		<castTime>30</castTime>
+		<targetMode>Self</targetMode>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>3</level>
+				<order>3</order>
+				<psyfocusCost>0.2</psyfocusCost>
+				<entropyGain>100</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_PillarOfLight</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>15</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_FakeSun</hediffDefWhenSuccess>
+				<hours>2</hours>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>Passioned_Flame_AkashaRecord</defName>
+		<label>Record of Akasha</label>
+		<description>grant user the blessing of Akasha. lowering incoming damage based on the amount of skill where pawn has passion in &lt;color=#01F1F1&gt;\n\nSuccess: 15 \nGreat Success: 18&lt;/color&gt;</description>
+		<iconPath>Abilities/PassionedFlame/AkashaRecord</iconPath>
+		<abilityClass>MakaiTechPsycast.PassionedFlame.Ability_AkashaRecord</abilityClass>
+		<castTime>30</castTime>
+		<targetMode>Self</targetMode>
+		<castSound>PsychicSoothePulserCast</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>MakaiTech_VPE_Passioned_Flame</path>
+				<level>4</level>
+				<order>1</order>
+				<psyfocusCost>0.4</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>Passioned_Flame_GatheringFlame</li>
+				</prerequisites>
+			</li>
+			<li Class="MakaiTechPsycast.AbilityExtension_Roll1D20">
+				<successThreshold>15</successThreshold>
+				<hediffDefWhenSuccess>MakaiTechPsy_PF_AkashaRecord</hediffDefWhenSuccess>
+				<hours>4</hours>
+				<greatSuccessThreshold>18</greatSuccessThreshold>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+	<!-- <VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase"> -->
+		<!-- <defName>Passioned_Flame_AbilityTen</defName> -->
+		<!-- <label>Ability Ten</label> -->
+		<!-- <description>after a brief moment of concentrating, gain the ability to bargain like a great merchant for a short period.</description> -->
+		<!-- <iconPath>Abilities/Archon/GroupLink</iconPath> -->
+		<!-- <abilityClass>VEF.Abilities.Ability_Blank</abilityClass> -->
+		<!-- <durationTime>1000</durationTime> -->
+		<!-- <castTime>30</castTime> -->
+		<!-- <targetMode>Self</targetMode> -->
+		<!-- <radius>10</radius> -->
+		<!-- <castSound>PsychicSoothePulserCast</castSound> -->
+		<!-- <modExtensions> -->
+			<!-- <li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast"> -->
+				<!-- <path>MakaiTech_VPE_Passioned_Flame</path> -->
+				<!-- <level>4</level> -->
+				<!-- <order>2</order> -->
+				<!-- <psyfocusCost>0.1</psyfocusCost> -->
+				<!-- <entropyGain>0</entropyGain> -->
+				<!-- <prerequisites> -->
+					<!-- <li>Passioned_Flame_ArtificialSun</li> -->
+				<!-- </prerequisites> -->
+			<!-- </li> -->
+			<!-- <li Class="VEF.Abilities.AbilityExtension_Hediff"> -->
+				<!-- <hediff>MakaiPsy_BI_Trading</hediff> -->
+			<!-- </li> -->
+		<!-- </modExtensions> -->
+	<!-- </VEF.Abilities.AbilityDef> -->
+
+</Defs>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<DamageDef>
+    <defName>PassionedFlame_LightPunishment</defName>
+    <label>Light Damage</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been purged</deathMessage>
+	<buildingDamageFactor>20</buildingDamageFactor>
+	<defaultDamage>200</defaultDamage>
+	<minDamageToFragment>15</minDamageToFragment>
+	<defaultStoppingPower>1</defaultStoppingPower>
+    <defaultArmorPenetration>5.00</defaultArmorPenetration>
+    <hediff>Burn</hediff>
+    <hediffSolid>Burn</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Slice</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+    <isRanged>true</isRanged>
+    <makesAnimalsFlee>true</makesAnimalsFlee>
+	<isExplosive>true</isExplosive>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>20</explosionHeatEnergyPerCell>
+    <!-- <explosionCellFleck>BlastDry</explosionCellFleck> -->
+    <!-- <explosionColorCenter>(255,122,0,255)</explosionColorCenter> -->
+    <!-- <explosionColorEdge>(255,164,80,100)</explosionColorEdge> -->
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+
+</Defs>
